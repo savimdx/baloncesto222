@@ -1,0 +1,8 @@
+{
+  "name": "Remix: Entrenamientos de Baloncesto - Página de Ventas",
+  "description": "Página de ventas premium y highly persuasiva para el pack de +1000 entrenamientos de baloncesto.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
