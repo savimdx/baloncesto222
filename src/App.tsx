@@ -467,53 +467,6 @@ export default function App() {
       </header>
 
 
-      {/* --- SECCIÓN 2: BENEFICIOS (POR QUÉ NUESTRO MÉTODO?) --- */}
-      <section id="beneficios" className="py-8 md:py-12 px-4 bg-slate-50 border-b border-slate-100 relative">
-        <div className="absolute top-1/2 left-1/4 w-96 h-96 bg-orange-100/10 blur-[120px] rounded-full pointer-events-none" />
-
-        <div className="max-w-7xl mx-auto">
-          
-          {/* Header */}
-          <div className="text-center max-w-3xl mx-auto space-y-2 mb-10">
-            <span className="inline-flex text-[10px] bg-blue-50 text-blue-700 border border-blue-200/60 px-3.5 py-1 rounded-full font-bold uppercase tracking-widest font-mono">
-              LA DIFERENCIA REAL
-            </span>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-blue-950 leading-tight">
-              Diseñado para entrenadores que exigen resultados profesionales
-            </h2>
-            <p className="text-sm sm:text-base text-blue-900/80 max-w-2xl mx-auto leading-relaxed">
-              El <span className="font-bold text-orange-600">92% de los entrenadores de baloncesto</span> desperdician hasta 6 horas semanales dibujando jugadas en cuadernos o buscando videos en internet. Con este método estructurado, organizas tu semana en 5 minutos.
-            </p>
-          </div>
-
-          {/* Grid list - 3-column elegant light cards */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-            {BENEFITS.map((benefit, idx) => (
-              <div 
-                key={benefit.id} 
-                className="bg-white border border-slate-100 p-5 rounded-3xl shadow-sm hover:shadow-md hover:border-blue-500/30 transition-all duration-300 flex flex-col justify-between hover:-translate-y-1 group relative overflow-hidden"
-              >
-                {/* Sleek blue left accent line */}
-                <div className="absolute top-0 bottom-0 left-0 w-[3px] bg-blue-600 opacity-0 group-hover:opacity-100 transition-opacity" />
-                
-                <div>
-                  <div className="w-8 h-8 rounded-full bg-blue-50 text-blue-700 border border-blue-100 flex items-center justify-center text-xs font-extrabold font-mono mb-3 group-hover:bg-blue-600 group-hover:text-white transition-colors duration-300">
-                    0{idx + 1}
-                  </div>
-                  <h4 className="text-base font-bold text-blue-950 tracking-tight group-hover:text-blue-700 transition-colors">
-                    {benefit.title}
-                  </h4>
-                  <p className="text-xs sm:text-sm text-blue-900/70 mt-2.5 leading-relaxed">
-                    {benefit.description}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
-
-        </div>
-      </section>
-
 
       {/* --- SECCIÓN 3: ¿QUÉ VAS A RECIBIR? (10 CARDS) --- */}
       <section id="contenido" className="py-8 md:py-12 px-4 bg-white relative border-b border-slate-100">
