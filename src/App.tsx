@@ -218,6 +218,8 @@ function UtmifyLink({ baseUrl, children, ...props }: UtmifyLinkProps) {
   );
 }
 
+const loadedImagesCache = new Set<string>();
+
 interface OptimizedImageProps {
   src: string;
   alt: string;
@@ -237,25 +239,45 @@ function OptimizedImage({
   fetchPriority,
   loading,
 }: OptimizedImageProps) {
-  const [isLoaded, setIsLoaded] = useState<boolean>(false);
-  
+  const [isLoaded, setIsLoaded] = useState<boolean>(() => Boolean(src && loadedImagesCache.has(src)));
+  const imgRef = useRef<HTMLImageElement>(null);
+
+  const handleLoad = () => {
+    if (src) loadedImagesCache.add(src);
+    setIsLoaded(true);
+  };
+
+  useEffect(() => {
+    if (!src) return;
+    if (loadedImagesCache.has(src)) {
+      setIsLoaded(true);
+      return;
+    }
+    if (imgRef.current && (imgRef.current.complete || imgRef.current.naturalWidth > 0)) {
+      handleLoad();
+    }
+  }, [src]);
+
   return (
     <div className={`relative overflow-hidden bg-slate-100/50 dark:bg-slate-900/30 rounded-xl ${wrapperClassName}`}>
       {/* Shimmer / Pulse skeleton loader */}
       {!isLoaded && (
-        <div className="absolute inset-0 bg-slate-200/50 dark:bg-slate-800/40 animate-pulse flex items-center justify-center rounded-xl">
+        <div className="absolute inset-0 bg-slate-200/50 dark:bg-slate-800/40 animate-pulse flex items-center justify-center rounded-xl pointer-events-none">
           <div className="w-6 h-6 border-2 border-orange-500/30 border-t-orange-500 rounded-full animate-spin" />
         </div>
       )}
       <img
+        ref={imgRef}
         id={id}
         src={src}
         alt={alt}
-        onLoad={() => setIsLoaded(true)}
-        className={`transition-all duration-700 ease-out ${
+        onLoad={handleLoad}
+        onError={handleLoad}
+        className={`transition-all duration-200 ease-out ${
           isLoaded ? 'opacity-100 scale-100 blur-0' : 'opacity-0 scale-98 blur-sm'
         } ${className}`}
         referrerPolicy="no-referrer"
+        decoding="async"
         loading={loading}
         // @ts-ignore
         fetchPriority={fetchPriority}
@@ -327,6 +349,28 @@ export default function App() {
     });
     
     setCheckoutUrl(`${baseUrl}?${baseParams.toString()}`);
+  }, []);
+
+  useEffect(() => {
+    // Warm up image cache in background for smooth, instant loading across all sections
+    const criticalImages = [
+      "https://i.postimg.cc/3RFXHx91/Chat-GPT-Image-18-de-jul-de-2026-09-55-25.png",
+      ...BONUSES.map(b => b.image).filter((img): img is string => Boolean(img)),
+      ...TESTIMONIALS.map(t => t.avatarUrl).filter(Boolean),
+      ...SCROLL_IMAGES
+    ];
+
+    criticalImages.forEach(src => {
+      if (!src) return;
+      const img = new Image();
+      img.src = src;
+      if (img.complete) {
+        loadedImagesCache.add(src);
+      } else {
+        img.onload = () => loadedImagesCache.add(src);
+        img.onerror = () => loadedImagesCache.add(src);
+      }
+    });
   }, []);
 
   useEffect(() => {
