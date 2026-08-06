@@ -100,36 +100,36 @@ const fallbackRates: Record<string, number> = {
 };
 
 export const CurrencyProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const originalPrice = 6.90;
-  const [currencyCode, setCurrencyCode] = useState<string>('USD');
-  const [convertedPrice, setConvertedPrice] = useState<number>(6.90);
-  const [formattedPrice, setFormattedPrice] = useState<string>('$6.90');
+  const originalPrice = 9.36;
+  const [currencyCode, setCurrencyCode] = useState<string>('EUR');
+  const [convertedPrice, setConvertedPrice] = useState<number>(9.36);
+  const [formattedPrice, setFormattedPrice] = useState<string>('9,36 €');
   const [rate, setRate] = useState<number>(1);
   const [isConverting, setIsConverting] = useState<boolean>(false);
 
   useEffect(() => {
     async function loadCurrency() {
-      setCurrencyCode('USD');
+      setCurrencyCode('EUR');
       setRate(1);
-      setConvertedPrice(6.90);
-      setFormattedPrice('$6.90');
+      setConvertedPrice(9.36);
+      setFormattedPrice('9,36 €');
       setIsConverting(false);
     }
 
     loadCurrency();
   }, []);
 
-  const convertAndFormat = (usdValue: number): string => {
+  const convertAndFormat = (eurValue: number): string => {
     try {
-      const formatter = new Intl.NumberFormat('en-US', {
+      const formatter = new Intl.NumberFormat('es-ES', {
         style: 'currency',
-        currency: 'USD',
-        minimumFractionDigits: usdValue % 1 === 0 ? 0 : 2,
+        currency: 'EUR',
+        minimumFractionDigits: eurValue % 1 === 0 ? 0 : 2,
         maximumFractionDigits: 2
       });
-      return formatter.format(usdValue);
+      return formatter.format(eurValue);
     } catch (e) {
-      return `$${usdValue}`;
+      return `${eurValue} €`;
     }
   };
 

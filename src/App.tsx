@@ -921,23 +921,23 @@ export default function App() {
             <div className="max-w-xl mx-auto space-y-3 text-left text-xs sm:text-sm font-semibold text-slate-800 py-4">
               <div className="flex items-start gap-3">
                 <Check className="w-4.5 h-4.5 text-orange-500 mt-0.5 flex-shrink-0 stroke-[3]" />
-                <span>+1000 Sesiones de Entrenamientos de Baloncesto <span className="text-orange-500/90 font-medium">(Valorizado en $129)</span></span>
+                <span>+1000 Sesiones de Entrenamientos de Baloncesto <span className="text-orange-500/90 font-medium">(Valorizado en {convertAndFormat(129)})</span></span>
               </div>
               <div className="flex items-start gap-3">
                 <Check className="w-4.5 h-4.5 text-orange-500 mt-0.5 flex-shrink-0 stroke-[3]" />
-                <span>Bono 1: Ejercicios de Manejo de Balón en el Baloncesto <span className="text-orange-500/90 font-medium">(Valorizado en $39)</span></span>
+                <span>Bono 1: Ejercicios de Manejo de Balón en el Baloncesto <span className="text-orange-500/90 font-medium">(Valorizado en {convertAndFormat(39)})</span></span>
               </div>
               <div className="flex items-start gap-3">
                 <Check className="w-4.5 h-4.5 text-orange-500 mt-0.5 flex-shrink-0 stroke-[3]" />
-                <span>Bono 2: Ejercicios de Técnica Individual e Táctica de Baloncesto <span className="text-orange-500/90 font-medium">(Valorizado en $49)</span></span>
+                <span>Bono 2: Ejercicios de Técnica Individual e Táctica de Baloncesto <span className="text-orange-500/90 font-medium">(Valorizado en {convertAndFormat(49)})</span></span>
               </div>
               <div className="flex items-start gap-3">
                 <Check className="w-4.5 h-4.5 text-orange-500 mt-0.5 flex-shrink-0 stroke-[3]" />
-                <span>Bono 3: Ejercicios para el Entrenamiento del Bote, el Rebote y el Pase en el Baloncesto <span className="text-orange-500/90 font-medium">(Valorizado en $29)</span></span>
+                <span>Bono 3: Ejercicios para el Entrenamiento del Bote, el Rebote y el Pase en el Baloncesto <span className="text-orange-500/90 font-medium">(Valorizado en {convertAndFormat(29)})</span></span>
               </div>
               <div className="flex items-start gap-3">
                 <Check className="w-4.5 h-4.5 text-orange-500 mt-0.5 flex-shrink-0 stroke-[3]" />
-                <span>Bono 4: Lecciones en Video de Baloncesto <span className="text-orange-500/90 font-medium">(Valorizado en $59)</span></span>
+                <span>Bono 4: Lecciones en Video de Baloncesto <span className="text-orange-500/90 font-medium">(Valorizado en {convertAndFormat(59)})</span></span>
               </div>
               <div className="flex items-start gap-3">
                 <Check className="w-4.5 h-4.5 text-orange-500 mt-0.5 flex-shrink-0 stroke-[3]" />
@@ -968,13 +968,7 @@ export default function App() {
                 <span className="text-6xl sm:text-7xl md:text-8xl font-black text-orange-500 font-sans tracking-tight">
                   {formattedPrice}
                 </span>
-                <span className="text-2xl sm:text-3xl md:text-4xl font-black text-orange-500 font-sans">
-                  USD
-                </span>
               </div>
-              <span className="text-xs text-slate-500 font-bold block">
-                (Puede pagar en su moneda local)
-              </span>
             </div>
 
             {/* Big Green Button */}
