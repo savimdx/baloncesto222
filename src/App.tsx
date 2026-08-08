@@ -969,6 +969,9 @@ export default function App() {
                   {formattedPrice}
                 </span>
               </div>
+              <span className="text-xs text-slate-500 font-bold block">
+                (Puedes pagar en tu moneda local)
+              </span>
             </div>
 
             {/* Big Green Button */}
